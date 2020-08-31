@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body style="background-color:#dddb45;">
+    <div style="text-align: center;" class="container-fluid">
+        <form style="text-align: center;">
+            <h1 style="color: red;">Personal Details</h1>
+            <br>
+            <span title="required"></span> Name: <input type="text" name="txt_name" /></br>
+            <br>
+            <span title="required"></span> Password: <input type="password" name="txt_password" /></br>
+            <br>
+            <span title="required"></span> Email Id: <input type="email" name="txt_email" /></br>
+            <br>
+            <span title="required"></span> Gender:
+            <input type="radio" name="gen" /> male <input type="radio" name="gen" /> female</br>
+            <span title="required"></span> Conatct#: <input type="number" name="txt_contact" /></br>
+            <br>
+            <h1 style="color: red;">Educational Qualification</h1>
+            <br>
+            <span title="required"></span> Degree:
+            <select name="degree">
+                <option value="-- Select Group --">-- Select Group --</option>
+                <option value="MBBS"> MBBS </option>
+                <option value="ENGINEERING"> ENGINEERING </option>
+                <option value="COMMERCE"> COMMERCE </option>
+                <option value="VOCATIONAL"> VOCATIONAL </option>
+            </select></br>
+            <br>
+            <span title="required"></span> Engineering:
+            <select name="engineering">
+                <option value="-- Select Group --">-- Select Group --</option>
+                <option value="CSE"> CSE </option>
+                <option value="EIE"> EIE </option>
+                <option value="ECE"> ECE </option>
+                <option value="IT"> IT </option>
+            </select></br>
+            <br>
+            <span title="required"></span>Hobbies:
+            <input type="checkbox" id="books" name="books" value="books"><span>Reading Books</span>
+            <input type="checkbox" id="chess" name="chess" value="chess"><span>Playing Chess</span>
+            <span title="required"></span><h1 style="color: red;">Address</h1>
+            <textarea name="address" rows="4" cols="50"></textarea>
+            <br><br>
+            <span>Attach Resume</span><input type="file" size="60" />
+            <br><br>
+            <button type="button" style="border-radius: 8px;font-size: 20px;background-color: #e29734;">SUBMIT</button>
+        </form>
+    </div>
+    
+    
+</body>
+</html>
