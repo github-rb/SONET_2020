@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Educational registration form</title>
+    <!-- Latest compiled and minified CSS -->
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    
+    <style>
+      form {
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    
+
+}
+
+input {
+    margin-top: 5px;
+}
+label {
+    text-align : center;
+}
+table {
+    margin-top: 20px;
+}
+#data{
+  border: 1mm blue solid;
+    border-radius: 10mm;
+    padding: 5mm;
+}
+.btn-success {
+    margin-top: 15px;
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+
+}
+
+.btn-warning {
+    width: 50%;
+    margin: auto;
+}
+body{
+  background-color: rgba(245, 244, 177, 0.479);
+}
+    </style>
+
+  </head>
+  <body class="container">
+    <div class="jumbotron row bg-primary text-center text-light">
+      <h1>Student Details</h1>
+    </div>
+    <div class="container" id="data">
+      <form onsubmit="pushData(this, event)" class="col-6">
+        <div class="form-group row">
+          <label class="col-sm-3 col-form-label" for="name">Name: </label>
+          <div class="col-sm-9">
+          <input class="form-control" type="text" id="name" name="name" placeholder="Enter Name">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-sm-3 col-form-label" for="year">Year: </label>
+          <div class="col-sm-9">
+          <input class="form-control" type="text" name="year" id="exampleFormControlSelect1" placeholder="Enter year">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-sm-3 col-form-label" for="branch">Branch: </label>
+          <div class="col-sm-9">
+          <input class="form-control" type="text" name="branch" id="branch" placeholder="Enter branch">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-sm-3 col-form-label" for="section">Section: </label>
+          <div class="col-sm-9">
+          <input class="form-control" type="text" name="section" id="section" placeholder="Enter section">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-sm-3 col-form-label" for="number">Number: </label>
+          <div class="col-sm-9">
+          <input class="form-control" type="tel" id="number" name="number" placeholder="Enter number">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-6">
+            <input type="submit" class="btn btn-success" />
+          </div>
+          <div class="col-sm-6">
+            <button
+              type="button"
+              class="btn btn-warning"
+              data-toggle="modal"
+              data-target="#exampleModal"
+            >
+              View Details
+            </button>
+          </div>
+          
+          
+        </div>
+  
+        
+        
+      </form>
+    </div>
+    
+
+    <div id="exampleModal" class="modal" tabindex="-1" role="dialog">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header btn-warning text-center">
+            <h3 class="modal-title">Student Register</h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div>
+              <table class="table">
+                <thead class="thead btn-warning table-bordered">
+                  <tr>
+                    <th>Name</th>
+                    <th>Section</th>
+                    <th>Number</th>
+                    <th>Branch</th>
+                    <th>Year</th>
+                  </tr>
+                </thead>
+                <tbody></tbody>
+              </table>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script >
+      let studentArray = [];
+
+function pushData(form, event) {
+  debugger;
+  event.preventDefault();
+  // const form = document.querySelector("form");
+  var studentObject = {
+    name: form.name.value,
+    section: form.section.value,
+    number: form.number.value,
+    year: form.year.value,
+    branch:form.branch.value,
+  };
+  studentArray.push(studentObject);
+  showData();
+  clearForm(form);
+
+  
+  // studentArray.push(form.section.value);
+  // studentArray.push(form.number.value);
+  // studentArray.push(form.year.value);
+  debugger;
+}
+
+function showData() {
+  let targetBody = document.querySelector("tbody");
+  targetBody.innerHTML = '';
+  studentArray.forEach((student) => {
+    targetBody.innerHTML += `
+             <tr>
+                <td>
+                    ${student.name}
+                </td>
+                <td>
+                    ${student.section}
+                </td>
+                <td>
+                    ${student.number}
+                </td>
+                <td>
+                    ${student.branch}
+                </td>
+                <td>
+                    ${student.year}
+                </td>
+            </tr>
+      `;
+  });
+}
+
+function clearForm(form) {
+  form.name.value = "";
+  form.section.value = "";
+  form.number.value = "";
+  form.branch.value = "";
+  form.year.value = "";
+}
+    </script>
+  </body>
+</html>
