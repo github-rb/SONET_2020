@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    
+
+    <script>
+        
+        
+            function myFunction(){
+            var request = new XMLHttpRequest();
+            var x = document.getElementById("city").value;
+            var s = 'https://api.openweathermap.org/data/2.5/weather?q='+x+'&appid=f73ec92a8ba4c814ba05e9e92e4d2558'
+            request.open('GET',s,true)
+            request.onload = function(){
+                if(request.status >=200 && request.status<400){
+                    //succcess
+                    var data = JSON.parse(request.responseText);
+                    console.log(data);
+                    
+                    document.getElementById("city_name").innerText = "CITY:"+data.name;
+                    document.getElementById("clouds").innerText = "CLOUDS:  "+ data.clouds.all+"%";
+                    document.getElementById("feelslike").innerText = "FEELS LIKE:   "+ (data.main.feels_like-273.15)+"°C";
+                    document.getElementById("pressure").innerText = "PRESSURE:  "+ data.main.pressure+" millibars";
+                    document.getElementById("humidity").innerText = "HUMIDITY:  "+ data.main.humidity+"%";
+                    document.getElementById("current_temp").innerText = "TEMPERATURE:   "+ (data.main.temp-273.15)+"°C";
+                    document.getElementById("temp_max").innerText = "LOWEST:    "+ (data.main.temp_max-273.15)+"°C";
+                    document.getElementById("temp_min").innerText = "HIGHEST:   "+ (data.main.temp_min-273.15)+"°C";
+                    document.getElementById("wind_speed").innerText = "WIND:    "+ data.wind.speed+"km/h";
+                    document.getElementById("mist").innerText = "OVERALL WEATHER:   "+ data.weather[0].main;
+                }
+                else
+                console.log("error");
+            };
+            request.send();
+
+    }
+
+</script>
+
+    
+    <style>
+        .jumbotron
+        {
+            background-image: url("images/wea.jpg");
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="container">
+        
+        
+        <div class="jumbotron text-center row">
+            
+            <h1> FOLLOW WEATHER</h1>
+            
+        
+        </div>
+    </div>
+    <div class="container">
+        <form method="GET">
+            <div class="form-group row">
+                <label class="col-sm-3 col-form-label" for="city">CITY: </label>
+                <div class="col-sm-9">
+                <select class="form-control" name="city" id="city">
+                    <option >SELECT CITY</option>
+                    <option value="delhi">DELHI</option>
+                    <option value="mumbai">MUMBAI</option>
+                    <option value="bangalore">BANGALORE</option>
+                    <option value="hyderabad">HYDERABAD</option>
+                    <option value="ahmedabad">AHMEDABAD</option>
+                    <option value="chennai">CHENNAI</option>
+                    <option value="kolkata">KOLKATA</option>
+                    <option value="surat">SURAT</option>
+                    <option value="pune">PUNE</option>
+                    <option value="jaipur">JAIPUR</option>
+                    <option value="lucknow">LUCKNOW</option>
+                    <option value="kanpur">KANPUR</option>
+                    <option value="nagpur">NAGPUR</option>
+                    <option value="vishakhapatnam">VISHAKHAPATNAM</option>
+                    <option value="indore">INDORE</option>
+                    
+                </select>
+                </div>
+            </div>
+            <button type="button" class="form-control btn btn-warning btn-lg"data-toggle="modal" data-target="#myModal" onclick="myFunction()"><b>View Report</b></button><hr>
+            
+        </form>
+    </div>
+    <div id="myModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+      
+         
+          <div class="modal-content">
+            <div class="modal-header" style="background-color: lightblue;">
+              
+              <h4 class="modal-title" >WEATHER REPORT</h4>
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-6">
+                        <h3 id="city_name"></h3>
+                    </div>
+                    <div class="col-6">
+                        <h3 id="mist"></h3>
+                    </div>
+                </div><hr>
+                
+                <div class="row">
+                    <div class="col-6">
+                        <div id="current_temp"></div>
+                        <div id="feelslike"></div>
+                    </div>
+                    <div class="col-6">
+                        <div class="row">
+                            <div id="temp_max"></div>
+                        </div>
+                        <div class="row">
+                            <div id="temp_min"></div>
+                        </div>
+                    </div>
+                </div><hr>
+                <div class="row">
+                    <div class="col-6">
+                        <div id="clouds"></div>
+                        <div id="wind_speed"></div>
+                    </div>
+                    <div class="col-6">
+                        <div class="row"><div id="pressure"></div></div>
+                        <div class="row"><div id="humidity"></div></div>
+                        
+                        
+                    </div><hr>
+                </div>
+            </div>
+            <div class="modal-footer">
+              
+              <button type="button" class="btn btn-default bg-danger text-light" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+      
+        </div>
+      </div>
+    
+        
+    </div>
+</div>
+
+    
+    
+</body>
+</html>
